@@ -15,19 +15,67 @@
 
     <style>
       body { font-family: sans-serif; margin: 0; padding: 12px; }
-      #layout { display: grid; grid-template-columns: 1fr 420px; gap: 12px; }
+
+      /* keep the page from becoming ultra-wide */
+      .page { max-width: 1200px; margin: 0 auto; }
+
+      #meta { margin-bottom: 8px; }
+
+      #layout {
+        display: grid;
+        grid-template-columns: 1fr 420px;
+        gap: 12px;
+        align-items: start;
+      }
+
+      /* Make the map panel square-ish and not too wide */
+      #map {
+        width: 100%;
+        max-width: 720px;     /* limit width so it doesn't stretch too wide */
+        aspect-ratio: 1 / 1;  /* key: square plot area */
+      }
+
       #structure { width: 420px; height: 420px; }
+
+      /* Optional: keep info from pushing layout weirdly */
+      #info { margin-top: 8px; }
+
+      /* Description block below the viewer */
+      #description {
+        margin-top: 16px;
+        line-height: 1.4;
+        max-width: 900px;
+      }
     </style>
   </head>
 
   <body>
-    <div id="meta"></div>
-    <div id="layout">
-      <div>
-        <div id="map"></div>
-        <div id="info"></div>
+    <div class="page">
+      <div id="meta"></div>
+
+      <div id="layout">
+        <div>
+          <div id="map"></div>
+          <div id="info"></div>
+        </div>
+        <div id="structure"></div>
       </div>
-      <div id="structure"></div>
+
+      <!-- Put your explaining text here -->
+      <div id="description">
+        <h2>About this dataset</h2>
+        <p>
+          Add your description here (what the dataset is, what x/y/color mean,
+          how it was generated, citation, contact, etc.).
+        </p>
+        <!-- Example:
+        <ul>
+          <li><b>x:</b> Reduction energy (eV)</li>
+          <li><b>y:</b> logS</li>
+          <li><b>color:</b> dielectric constant</li>
+        </ul>
+        -->
+      </div>
     </div>
 
     <script type="text/javascript">
